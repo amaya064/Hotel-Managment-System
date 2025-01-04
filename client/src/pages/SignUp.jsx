@@ -100,7 +100,7 @@ export default function SignUp() {
           </p>
         </div>
       )}
-      <p className="mt-4 text-center">Already have an account? <a href="/signin" className="text-indigo-500">Sign In</a></p>
+      <p className="mt-4 text-center">Already have an account? <a href="/sign-in" className="text-indigo-500">Sign In</a></p>
     </div>
   );
 }
