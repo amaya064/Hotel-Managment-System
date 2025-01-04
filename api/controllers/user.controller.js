@@ -3,11 +3,11 @@ import User from '../models/user.model.js';
 import jwt from 'jsonwebtoken';
 
 export const createUser = async (req, res, next) => {
-  const { email, password } = req.body;
+  const {username, email, password } = req.body;
 
   try {
     // Validate input
-    if (!email || !password) {
+    if (!username || !email || !password) {
       return res.status(400).json({ success: false, message: 'All fields are required' });
     }
 
@@ -26,13 +26,13 @@ export const createUser = async (req, res, next) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Save user
-    const newUser = new User({ email, password: hashedPassword });
+    const newUser = new User({ username, email, password: hashedPassword });
     await newUser.save();
 
     res.status(201).json({
       success: true,
       message: 'User created successfully',
-      user: { id: newUser._id, email: newUser.email },
+      user: { id: newUser._id, username: newUser.name, email: newUser.email },
     });
   } catch (err) {
     console.error('Error creating user:', err); // Log the full error for debugging
