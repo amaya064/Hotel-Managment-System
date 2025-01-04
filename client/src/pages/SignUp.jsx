@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'; // for navigation
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
+    username: '',
     email: '',
     password: '',
   });
@@ -33,7 +34,7 @@ export default function SignUp() {
 
       if (response.ok) {
         setMessage('User created successfully!');
-        setFormData({ email: '', password: '' });
+        setFormData({ name: '', email: '', password: '' });
       } else {
         setMessage(data.message || 'An error occurred');
       }
@@ -47,6 +48,19 @@ export default function SignUp() {
     <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg">
       <h2 className="text-2xl font-semibold text-center text-gray-800 mb-6">Sign Up</h2>
       <form onSubmit={handleSubmit}>
+
+      <div className="mb-4">
+          <label htmlFor="name" className="block text-sm font-medium text-gray-700">Username:</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+            className="w-full p-2 mt-1 border border-gray-300 rounded-md"
+          />
+        </div>
         <div className="mb-4">
           <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email:</label>
           <input
