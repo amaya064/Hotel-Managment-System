@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // for navigation
+import { useDispatch } from 'react-redux';
+import {signInStart, signInSuccess, signInFailure} from '../redux/user/userslice';
 
 export default function SignIn() {
   const [formData, setFormData] = useState({
@@ -21,6 +23,7 @@ export default function SignIn() {
     e.preventDefault();
 
     try {
+      dispatchEvent(signInStart());
       const response = await fetch('http://localhost:3000/api/users/signin', {
         method: 'POST',
         headers: {
@@ -87,6 +90,7 @@ export default function SignIn() {
           </p>
         </div>
       )}
+      <p className="mt-4 text-center">Don't have an account? <a href="/sign-up" className="text-indigo-500">Sign Up</a></p>
     </div>
   );
 }
