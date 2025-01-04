@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // for navigation
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
-
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,9 +19,7 @@ export default function SignUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
-    console.log('Form Data:', formData); // Debug log
-  
+
     try {
       const response = await fetch('http://localhost:3000/api/users', {
         method: 'POST',
@@ -29,9 +28,9 @@ export default function SignUp() {
         },
         body: JSON.stringify(formData),
       });
-  
+
       const data = await response.json();
-  
+
       if (response.ok) {
         setMessage('User created successfully!');
         setFormData({ email: '', password: '' });
@@ -43,7 +42,6 @@ export default function SignUp() {
       console.error('Error:', error);
     }
   };
-  
 
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg">
@@ -88,6 +86,7 @@ export default function SignUp() {
           </p>
         </div>
       )}
+      <p className="mt-4 text-center">Already have an account? <a href="/signin" className="text-indigo-500">Sign In</a></p>
     </div>
   );
 }
