@@ -53,9 +53,9 @@ export default function SignUp() {
           <label htmlFor="name" className="block text-sm font-medium text-gray-700">Username:</label>
           <input
             type="text"
-            id="name"
-            name="name"
-            value={formData.name}
+            id="username"
+            name="username"
+            value={formData.username}
             onChange={handleChange}
             required
             className="w-full p-2 mt-1 border border-gray-300 rounded-md"

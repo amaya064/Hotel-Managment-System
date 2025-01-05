@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // for navigation
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {signInStart, signInSuccess, signInFailure} from '../redux/user/userslice';
 
 export default function SignIn() {
@@ -8,9 +8,10 @@ export default function SignIn() {
     email: '',
     password: '',
   });
+  
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -22,8 +23,10 @@ export default function SignIn() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    dispatch(signInStart());
+
     try {
-      dispatchEvent(signInStart());
+     
       const response = await fetch('http://localhost:3000/api/users/signin', {
         method: 'POST',
         headers: {
@@ -36,12 +39,15 @@ export default function SignIn() {
 
       if (response.ok) {
         localStorage.setItem('token', data.token); // Save JWT token to local storage
+        dispatch(signInSuccess(data));
         setMessage('Sign-in successful!');
         navigate('/'); // Redirect to home page
       } else {
+        dispatch(signInFailure(data.message));
         setMessage(data.message || 'Invalid credentials');
       }
     } catch (error) {
+      dispatch(signInFailure(error.message));
       setMessage('Error during sign-in.');
       console.error('Error:', error);
     }
