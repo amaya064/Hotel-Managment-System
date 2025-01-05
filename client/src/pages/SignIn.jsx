@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // for navigation
 import { useDispatch, useSelector } from 'react-redux';
 import {signInStart, signInSuccess, signInFailure} from '../redux/user/userslice';
+import OAuth from '../components/OAuth';
+
 
 export default function SignIn() {
   const [formData, setFormData] = useState({
@@ -87,6 +89,7 @@ export default function SignIn() {
         >
           Sign In
         </button>
+        <OAuth/>
       </form>
 
       {message && (
