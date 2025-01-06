@@ -1,4 +1,4 @@
-import {FaSearch} from 'react-icons/fa';
+import { FaSearch, FaUserCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 export default function Header() {
@@ -16,13 +16,16 @@ export default function Header() {
              <FaSearch className='text-slate-600' />
 
         </form>
-        <ul className='flex gap-4'>
+        <ul className='flex gap-4 items-center'>
             <Link to='/' >
            <li className='hidden sm:inline text-slate-700 hover:underline'>Home</li> </Link>
            <Link to='/about' >
            <li className='hidden sm:inline text-slate-700 hover:underline'>About</li> </Link>
            <Link to='/Sign-In' >
            <li className=' text-slate-700 hover:underline'>Sign In</li>
+           </Link>
+           <Link to='/profile'>
+             <FaUserCircle className='text-slate-700 text-2xl hover:text-slate-900' />
            </Link>
         </ul>
         </div>
