@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // for navigation
-import { useDispatch, useSelector } from 'react-redux';
-import {signInStart, signInSuccess, signInFailure} from '../redux/user/userslice';
-import OAuth from '../components/OAuth';
-
+import { useNavigate } from 'react-router-dom';
 
 export default function SignIn() {
   const [formData, setFormData] = useState({
@@ -13,7 +9,7 @@ export default function SignIn() {
   
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -25,10 +21,7 @@ export default function SignIn() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    dispatch(signInStart());
-
     try {
-     
       const response = await fetch('http://localhost:3000/api/users/signin', {
         method: 'POST',
         headers: {
@@ -41,15 +34,12 @@ export default function SignIn() {
 
       if (response.ok) {
         localStorage.setItem('token', data.token); // Save JWT token to local storage
-        dispatch(signInSuccess(data));
         setMessage('Sign-in successful!');
         navigate('/'); // Redirect to home page
       } else {
-        dispatch(signInFailure(data.message));
         setMessage(data.message || 'Invalid credentials');
       }
     } catch (error) {
-      dispatch(signInFailure(error.message));
       setMessage('Error during sign-in.');
       console.error('Error:', error);
     }
@@ -89,7 +79,6 @@ export default function SignIn() {
         >
           Sign In
         </button>
-        <OAuth/>
       </form>
 
       {message && (
