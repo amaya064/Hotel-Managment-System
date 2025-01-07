@@ -80,3 +80,25 @@ export const signInUser = async (req, res, next) => {
     next(err); // Pass the error to the error handler middleware
   }
 };
+
+
+export const getProfile = async (req, res, next) => {
+  const { token } = req.body;
+
+  if (!token) {
+    return res.status(401).json({ message: "Unauthorized: No token provided" });
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY); // Verify token
+    const user = await User.findById(decoded.userId).select("-password"); // Fetch user by ID, exclude password
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.status(200).json({ user });
+  } catch (error) {
+    res.status(401).json({ message: "Invalid or expired token" });
+  }
+};
