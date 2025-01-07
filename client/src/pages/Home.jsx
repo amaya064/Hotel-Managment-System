@@ -4,28 +4,28 @@ import React from "react";
 const facilities = [
   {
     id: 1,
-    title: "Room Facilities",
+    title: "Accomodation",
     description:
       "Our rooms are equipped with modern amenities like air conditioning, Wi-Fi, flat-screen TVs, and more for your comfort.",
     image: "https://via.placeholder.com/300x200?text=Room+Facilities",
   },
   {
     id: 2,
-    title: "Food Items",
+    title: "Dinning",
     description:
       "Enjoy a variety of delicious cuisines prepared by our world-class chefs. From local delicacies to international dishes, we have it all.",
     image: "https://via.placeholder.com/300x200?text=Food+Items",
   },
   {
     id: 3,
-    title: "Pool Area",
+    title: "Relaxing",
     description:
       "Relax and unwind by our luxurious pool area, featuring a stunning view and a bar serving refreshing drinks.",
     image: "https://via.placeholder.com/300x200?text=Pool+Area",
   },
   {
     id: 4,
-    title: "Reception Area",
+    title: "Events",
     description:
       "Experience a warm welcome at our beautifully designed reception area, staffed 24/7 for your convenience.",
     image: "https://via.placeholder.com/300x200?text=Reception+Area",
