@@ -39,16 +39,32 @@ export default function Profile() {
   }, [navigate]);
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg">
-        <h1 className="text-2xl font-bold text-center">Profile</h1>
-        <div className="mt-6">
-          <p>
-            <strong>Username:</strong> {user.username || "N/A"}
-          </p>
-          <p>
-            <strong>Email:</strong> {user.email || "N/A"}
-          </p>
+    <div className="min-h-screen bg-gradient-to-r from-indigo-100 via-blue-200 to-teal-200 flex items-center justify-center">
+      <div className="bg-white shadow-xl rounded-lg max-w-lg w-full p-8">
+        <h1 className="text-3xl font-semibold text-center text-gray-800 mb-6">
+          Profile Details
+        </h1>
+        <div className="border-t-2 border-gray-300 pt-4">
+          <div className="mb-4">
+            <label className="text-lg font-medium text-gray-700">Username</label>
+            <p className="text-xl font-semibold text-gray-800 mt-2">
+              {user.username || "N/A"}
+            </p>
+          </div>
+          <div className="mb-6">
+            <label className="text-lg font-medium text-gray-700">Email</label>
+            <p className="text-xl font-semibold text-gray-800 mt-2">
+              {user.email || "N/A"}
+            </p>
+          </div>
+          <div className="text-center">
+            <button
+              className="bg-indigo-600 text-white py-2 px-6 rounded-full hover:bg-indigo-700 transition duration-300"
+              onClick={() => navigate("/sign-in")}
+            >
+              Sign Out
+            </button>
+          </div>
         </div>
       </div>
     </div>
