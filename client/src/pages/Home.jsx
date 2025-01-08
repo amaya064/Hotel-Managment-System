@@ -1,20 +1,23 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 // Sample data for demonstration. You can replace it with API data in the future.
 const facilities = [
   {
     id: 1,
-    title: "Accomodation",
+    title: "Accommodation",
     description:
       "Our rooms are equipped with modern amenities like air conditioning, Wi-Fi, flat-screen TVs, and more for your comfort.",
     image: "src/images/photo1.png",
+    link: "/accommodation",
   },
   {
     id: 2,
-    title: "Dinning",
+    title: "Dining",
     description:
       "Enjoy a variety of delicious cuisines prepared by our world-class chefs. From local delicacies to international dishes, we have it all.",
     image: "src/images/photo7.png",
+    link: "/dining",
   },
   {
     id: 3,
@@ -22,6 +25,7 @@ const facilities = [
     description:
       "Relax and unwind by our luxurious pool area, featuring a stunning view and a bar serving refreshing drinks.",
     image: "src/images/photo6.png",
+    link: "/relaxing",
   },
   {
     id: 4,
@@ -29,10 +33,13 @@ const facilities = [
     description:
       "Experience a warm welcome at our beautifully designed reception area, staffed 24/7 for your convenience.",
     image: "src/images/photo4.png",
+    link: "/events",
   },
 ];
 
 export default function Home() {
+  const navigate = useNavigate();
+
   return (
     <div
       className="flex flex-col min-h-screen"
@@ -74,6 +81,14 @@ export default function Home() {
                   {facility.title}
                 </h2>
                 <p className="text-gray-600 mt-2">{facility.description}</p>
+                
+                {/* Button to navigate to the facility page */}
+                <button
+                  onClick={() => navigate(facility.link)} // Navigate to the respective facility page
+                  className="mt-4 w-full bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-600"
+                >
+                  Learn More
+                </button>
               </div>
             </div>
           ))}
