@@ -49,7 +49,10 @@ export default function SignIn() {
     <div
       className="flex flex-col min-h-screen"
       style={{
-        background: 'linear-gradient(to right, #d4f8e8, #dbeafe)', // Light green to light blue gradient
+        backgroundImage: "url('src/images/photo3.png')",// Replace with the actual path to your background image
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
       }}
     >
       {/* Sign-In Box */}

@@ -34,7 +34,7 @@ export default function SignUp() {
 
       if (response.ok) {
         setMessage('User created successfully!');
-        setFormData({ name: '', email: '', password: '' });
+        setFormData({ username: '', email: '', password: '' });
       } else {
         setMessage(data.message || 'An error occurred');
       }
@@ -45,7 +45,15 @@ export default function SignUp() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div
+      className="flex flex-col min-h-screen"
+      style={{
+        backgroundImage: "url('src/images/photo3.png')", // Replace with the actual path to your background image
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }}
+    >
       <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg">
         <h2 className="text-2xl font-semibold text-center text-gray-800 mb-6">Sign Up</h2>
         <form onSubmit={handleSubmit}>
