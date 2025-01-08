@@ -39,8 +39,8 @@ export default function Profile() {
   }, [navigate]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-indigo-100 via-blue-200 to-teal-200 flex items-center justify-center">
-      <div className="bg-white shadow-xl rounded-lg max-w-lg w-full p-8">
+    <div className="min-h-screen bg-gradient-to-r from-indigo-100 via-blue-200 to-teal-200 flex flex-col">
+      <div className="bg-white shadow-xl rounded-lg max-w-lg w-full p-8 mx-auto mt-10">
         <h1 className="text-3xl font-semibold text-center text-gray-800 mb-6">
           Profile Details
         </h1>
@@ -67,6 +67,44 @@ export default function Profile() {
           </div>
         </div>
       </div>
+
+      {/* Footer */}
+      <footer className="mt-auto bg-gray-800 text-white py-6">
+        <div className="text-center">
+          <p className="text-sm">
+            &copy; {new Date().getFullYear()} Our Hotel. All Rights Reserved.
+          </p>
+          <p className="text-sm mt-2">
+            Follow us on:{' '}
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-400 hover:underline"
+            >
+              Facebook
+            </a>{' '}
+            |{' '}
+            <a
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-400 hover:underline"
+            >
+              Twitter
+            </a>{' '}
+            |{' '}
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-pink-400 hover:underline"
+            >
+              Instagram
+            </a>
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }
