@@ -39,7 +39,15 @@ export default function Profile() {
   }, [navigate]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-indigo-100 via-blue-200 to-teal-200 flex flex-col">
+    <div
+      className="min-h-screen flex flex-col"
+      style={{
+        backgroundImage: "url('src/images/photo3.png')", // Replace with the path to your background photo
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       <div className="bg-white shadow-xl rounded-lg max-w-lg w-full p-8 mx-auto mt-10">
         <h1 className="text-3xl font-semibold text-center text-gray-800 mb-6">
           Profile Details
@@ -62,7 +70,7 @@ export default function Profile() {
               className="bg-indigo-600 text-white py-2 px-6 rounded-full hover:bg-indigo-700 transition duration-300"
               onClick={() => navigate("/sign-in")}
             >
-              Sign Out
+              Book Now
             </button>
           </div>
         </div>

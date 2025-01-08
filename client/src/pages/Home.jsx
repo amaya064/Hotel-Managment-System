@@ -7,28 +7,28 @@ const facilities = [
     title: "Accomodation",
     description:
       "Our rooms are equipped with modern amenities like air conditioning, Wi-Fi, flat-screen TVs, and more for your comfort.",
-    image: "https://via.placeholder.com/300x200?text=Room+Facilities",
+    image: "src/images/photo1.png",
   },
   {
     id: 2,
     title: "Dinning",
     description:
       "Enjoy a variety of delicious cuisines prepared by our world-class chefs. From local delicacies to international dishes, we have it all.",
-    image: "https://via.placeholder.com/300x200?text=Food+Items",
+    image: "src/images/photo7.png",
   },
   {
     id: 3,
     title: "Relaxing",
     description:
       "Relax and unwind by our luxurious pool area, featuring a stunning view and a bar serving refreshing drinks.",
-    image: "https://via.placeholder.com/300x200?text=Pool+Area",
+    image: "src/images/photo6.png",
   },
   {
     id: 4,
     title: "Events",
     description:
       "Experience a warm welcome at our beautifully designed reception area, staffed 24/7 for your convenience.",
-    image: "https://via.placeholder.com/300x200?text=Reception+Area",
+    image: "src/images/photo4.png",
   },
 ];
 
@@ -37,11 +37,18 @@ export default function Home() {
     <div
       className="flex flex-col min-h-screen"
       style={{
-        background: "linear-gradient(to right, #d4f8e8, #dbeafe)", // Light green to light blue gradient
+        backgroundImage: "url('src/images/photo3.png')", // Corrected the path to match relative paths for static assets
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        color: "#fff", // Ensure text contrasts well with the background image
       }}
     >
       {/* Main Content */}
-      <div className="flex-grow max-w-6xl mx-auto p-6 bg-gray-50 shadow-lg rounded-lg">
+      <div
+        className="flex-grow max-w-6xl mx-auto p-6 bg-gray-50 shadow-lg rounded-lg"
+        style={{ backgroundColor: "rgba(255, 255, 255, 0.9)" }} // Semi-transparent background for content
+      >
         {/* Page Header */}
         <h1 className="text-4xl font-bold text-gray-800 mb-8 text-center">
           Welcome to Our Hotel
