@@ -75,7 +75,7 @@ export default function Profile() {
               className="bg-indigo-600 text-white py-2 px-6 rounded-full hover:bg-indigo-700 transition duration-300"
               onClick={() => navigate("/sign-in")}
             >
-              Book Now
+              Update
             </button>
           </div>
           <div className="text-center mt-4">
