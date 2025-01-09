@@ -38,6 +38,13 @@ export default function Profile() {
     fetchProfile();
   }, [navigate]);
 
+  const handleLogout = () => {
+    // Remove user data from localStorage
+    localStorage.removeItem('token');
+    localStorage.removeItem('userEmail');
+    navigate("/sign-in"); // Redirect to sign-in page
+  };
+
   return (
     <div
       className="min-h-screen flex flex-col"
@@ -49,9 +56,7 @@ export default function Profile() {
       }}
     >
       <div className="bg-white shadow-xl rounded-lg max-w-lg w-full p-8 mx-auto mt-10">
-        <h1 className="text-3xl font-semibold text-center text-gray-800 mb-6">
-          Profile Details
-        </h1>
+        <h1 className="text-3xl font-semibold text-center text-gray-800 mb-6">Profile Details</h1>
         <div className="border-t-2 border-gray-300 pt-4">
           <div className="mb-4">
             <label className="text-lg font-medium text-gray-700">Username</label>
@@ -73,46 +78,16 @@ export default function Profile() {
               Book Now
             </button>
           </div>
+          <div className="text-center mt-4">
+            <button
+              className="bg-red-600 text-white py-2 px-6 rounded-full hover:bg-red-700 transition duration-300"
+              onClick={handleLogout}
+            >
+              LOGOUT
+            </button>
+          </div>
         </div>
       </div>
-
-      {/* Footer */}
-      <footer className="mt-auto bg-gray-800 text-white py-6">
-        <div className="text-center">
-          <p className="text-sm">
-            &copy; {new Date().getFullYear()} Our Hotel. All Rights Reserved.
-          </p>
-          <p className="text-sm mt-2">
-            Follow us on:{' '}
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-400 hover:underline"
-            >
-              Facebook
-            </a>{' '}
-            |{' '}
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-400 hover:underline"
-            >
-              Twitter
-            </a>{' '}
-            |{' '}
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-pink-400 hover:underline"
-            >
-              Instagram
-            </a>
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }

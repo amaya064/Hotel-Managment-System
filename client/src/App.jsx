@@ -6,6 +6,9 @@ import Profile from './pages/Profile';
 import About from './pages/About';
 import Header from './components/Header';
 import Accommodation from './pages/Accommodation';
+import BookingNow from './pages/Booking Now';
+import Footer from './components/footer';
+
 
 
 export default function App() {
@@ -19,7 +22,10 @@ export default function App() {
       <Route path="/profile" element={<Profile />} />
       <Route path="/about" element={<About />} />
       <Route path="/accommodation" element={<Accommodation />} />
+      <Route path="/bookingnow" element={<BookingNow />} />
+
     </Routes>
+    <Footer />
     </BrowserRouter>
   )
 }

@@ -34,6 +34,7 @@ export default function SignIn() {
 
       if (response.ok) {
         localStorage.setItem('token', data.token); // Save JWT token to local storage
+        localStorage.setItem('userEmail', formData.email); // Store the email in local storage
         setMessage('Sign-in successful!');
         navigate('/'); // Redirect to home page
       } else {
@@ -49,7 +50,7 @@ export default function SignIn() {
     <div
       className="flex flex-col min-h-screen"
       style={{
-        backgroundImage: "url('src/images/photo3.png')",// Replace with the actual path to your background image
+        backgroundImage: "url('src/images/photo3.png')", // Replace with the actual path to your background image
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
@@ -100,44 +101,6 @@ export default function SignIn() {
         )}
         <p className="mt-4 text-center">Don't have an account? <a href="/sign-up" className="text-indigo-500">Sign Up</a></p>
       </div>
-
-      {/* Footer */}
-      <footer className="mt-auto bg-gray-800 text-white py-6">
-        <div className="text-center">
-          <p className="text-sm">
-            &copy; {new Date().getFullYear()} Our Hotel. All Rights Reserved.
-          </p>
-          <p className="text-sm mt-2">
-            Follow us on:{' '}
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-400 hover:underline"
-            >
-              Facebook
-            </a>{' '}
-            |{' '}
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-400 hover:underline"
-            >
-              Twitter
-            </a>{' '}
-            |{' '}
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-pink-400 hover:underline"
-            >
-              Instagram
-            </a>
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }
