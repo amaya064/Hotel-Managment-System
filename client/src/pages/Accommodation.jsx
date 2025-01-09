@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Accomodation() {
   const accommodations = [
@@ -25,9 +26,10 @@ export default function Accomodation() {
     },
   ];
 
-  const handleBooking = (roomId) => {
-    alert(`You selected room ID: ${roomId} for booking.`);
-    // Add logic for booking the room (e.g., navigate to a booking form or save booking details)
+  const navigate = useNavigate();
+
+  const handleBooking = (room) => {
+    navigate('/bookingnow', { state: { room } });
   };
 
   return (
@@ -61,9 +63,9 @@ export default function Accomodation() {
                 </p>
                 <button
                   className="mt-6 w-full bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-600 transition duration-300"
-                  onClick={() => handleBooking(room.id)}
+                  onClick={() => handleBooking(room)}
                 >
-                  Book Now
+                  Learn More
                 </button>
               </div>
             </div>
