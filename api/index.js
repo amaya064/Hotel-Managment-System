@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import userRouter from './routes/user.route.js';
-
+import BookingRouter from './routes/Booking.route.js';
 
 
 dotenv.config();
@@ -25,7 +25,7 @@ app.use(express.json());
 
 // Routes path
 app.use('/api/users', userRouter);
-
+app.use('/api/Booking', BookingRouter);
 
 
 
