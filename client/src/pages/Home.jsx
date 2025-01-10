@@ -41,16 +41,7 @@ export default function Home() {
   const navigate = useNavigate();
 
   return (
-    <div
-      className="flex flex-col min-h-screen"
-      style={{
-        backgroundImage: "url('src/images/photo3.png')", // Corrected the path to match relative paths for static assets
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        color: "#fff", // Ensure text contrasts well with the background image
-      }}
-    >
+    <div className="flex flex-col min-h-screen bg-gray-100">
       {/* Main Content */}
       <div
         className="flex-grow max-w-6xl mx-auto p-6 bg-gray-50 shadow-lg rounded-lg"
@@ -81,7 +72,7 @@ export default function Home() {
                   {facility.title}
                 </h2>
                 <p className="text-gray-600 mt-2">{facility.description}</p>
-                
+
                 {/* Button to navigate to the facility page */}
                 <button
                   onClick={() => navigate(facility.link)} // Navigate to the respective facility page
@@ -94,7 +85,6 @@ export default function Home() {
           ))}
         </div>
       </div>
-     
     </div>
   );
 }
