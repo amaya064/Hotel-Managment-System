@@ -12,6 +12,9 @@ import Events from './pages/Events';
 import Relaxing from './pages/Relaxing';
 import Footer from './components/footer';
 
+import Pay from './pages/Pay';
+
+
 
 
 export default function App() {
@@ -29,6 +32,10 @@ export default function App() {
       <Route path="/dining" element={<Dining />} />
       <Route path="/events" element={<Events />} />
       <Route path="/relaxing" element={<Relaxing />} />
+      
+      <Route path="/pay" element={< Pay />} />
+    
+      
 
     </Routes>
     <Footer />
