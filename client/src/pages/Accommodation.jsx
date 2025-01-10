@@ -8,21 +8,21 @@ export default function Accomodation() {
       name: 'Deluxe Room',
       description: 'A spacious room with a king-size bed, sea view, and modern amenities.',
       price: 150,
-      image: 'src/images/deluxe-room.jpg', // Replace with actual image path
+      image: 'src/images/photo8.png', // Replace with actual image path
     },
     {
       id: 2,
       name: 'Suite',
       description: 'An elegant suite with a separate living area and luxurious furnishings.',
       price: 250,
-      image: 'src/images/suite.jpg', // Replace with actual image path
+      image: 'src/images/photo9.png', // Replace with actual image path
     },
     {
       id: 3,
       name: 'Standard Room',
       description: 'A cozy room with all the essentials for a comfortable stay.',
       price: 100,
-      image: 'src/images/standard-room.jpg', // Replace with actual image path
+      image: 'src/images/photo10.png', // Replace with actual image path
     },
   ];
 
@@ -65,7 +65,7 @@ export default function Accomodation() {
                   className="mt-6 w-full bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-600 transition duration-300"
                   onClick={() => handleBooking(room)}
                 >
-                  Learn More
+                  Book Now
                 </button>
               </div>
             </div>
