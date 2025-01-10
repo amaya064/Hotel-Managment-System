@@ -5,21 +5,21 @@ const relaxingFacilities = [
     title: "Pool Facilities",
     description:
       "Relax by our luxurious pool area, featuring comfortable loungers, refreshing drinks, and a stunning view. Our pool is perfect for a leisurely swim or a peaceful day under the sun.",
-    image: "https://via.placeholder.com/500x300?text=Pool+Facilities",
+    image: "src/images/photo12.png",
     imagePosition: "right",
   },
   {
     title: "Gym Facilities",
     description:
       "Stay fit during your stay with our state-of-the-art gym facilities. Equipped with modern machines, free weights, and personal trainers available on request.",
-    image: "https://via.placeholder.com/500x300?text=Gym+Facilities",
+    image: "src/images/photo11.png",
     imagePosition: "left",
   },
   {
     title: "Sport Facilities",
     description:
       "Engage in various sports activities including tennis, basketball, and more. Our sports facilities are designed to offer fun and fitness for all age groups.",
-    image: "https://via.placeholder.com/500x300?text=Sport+Facilities",
+    image: "src/images/photo13.png",
     imagePosition: "right",
   },
   {

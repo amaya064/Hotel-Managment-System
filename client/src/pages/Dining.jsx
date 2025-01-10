@@ -3,40 +3,22 @@ import React from 'react';
 export default function Dining() {
   const dishes = [
     {
-      name: "Gourmet Steak",
-      description: "A tender, juicy steak served with a side of creamy mashed potatoes and sautéed vegetables.",
-      price: "$35",
-      image: "https://via.placeholder.com/300x200?text=Gourmet+Steak",
-    },
-    {
       name: "Seafood Platter",
       description: "A mix of fresh shrimp, lobster, and scallops, served with lemon butter sauce.",
       price: "$45",
-      image: "https://via.placeholder.com/300x200?text=Seafood+Platter",
-    },
-    {
-      name: "Vegetarian Delight",
-      description: "A flavorful mix of roasted vegetables, quinoa, and a tangy balsamic glaze.",
-      price: "$20",
-      image: "https://via.placeholder.com/300x200?text=Vegetarian+Delight",
-    },
-    {
-      name: "Butter Chicken",
-      description: "A classic Indian dish featuring tender chicken in a creamy, spiced tomato sauce.",
-      price: "$25",
-      image: "https://via.placeholder.com/300x200?text=Butter+Chicken",
+      image: "src/images/photo14.png",
     },
     {
       name: "Sushi Platter",
       description: "A beautifully presented assortment of fresh sushi rolls and sashimi.",
       price: "$40",
-      image: "https://via.placeholder.com/300x200?text=Sushi+Platter",
+      image: "src/images/photo15.png",
     },
     {
       name: "Lobster Thermidor",
       description: "A rich and creamy lobster dish baked to perfection with cheese and herbs.",
       price: "$50",
-      image: "https://via.placeholder.com/300x200?text=Lobster+Thermidor",
+      image: "src/images/photo16.png",
     },
   ];
 
