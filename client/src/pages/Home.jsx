@@ -42,41 +42,70 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-100">
-      {/* Main Content */}
-      <div
-        className="flex-grow max-w-6xl mx-auto p-6 bg-gray-50 shadow-lg rounded-lg"
-        style={{ backgroundColor: "rgba(255, 255, 255, 0.9)" }} // Semi-transparent background for content
-      >
-        {/* Page Header */}
-        <h1 className="text-4xl font-bold text-gray-800 mb-8 text-center">
-          Welcome to Our Hotel
-        </h1>
+      {/* Hero Section with Video */}
+      <div className="relative h-screen bg-black">
+        <video
+          autoPlay
+          loop
+          muted
+          className="absolute top-0 left-0 w-full h-full object-cover"
+        >
+          <source
+            src="https://www.w3schools.com/html/mov_bbb.mp4" // Replace with your video URL
+            type="video/mp4"
+          />
+          Your browser does not support the video tag.
+        </video>
+        <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+          <div className="text-center text-white">
+            <h1 className="text-5xl font-extrabold mb-4">Welcome to Our Hotel</h1>
+            <p className="text-lg">
+              Discover luxury, comfort, and exceptional service at every turn.
+            </p>
+          </div>
+        </div>
+      </div>
 
-        {/* Facilities Section */}
+      {/* About Section */}
+      <div className="bg-white py-8 px-6 lg:px-20 text-center">
+        <p className="text-gray-700 text-lg max-w-4xl mx-auto">
+          At our hotel, we are committed to providing an unforgettable experience for all
+          our guests. Whether you're here for leisure, business, or a special occasion,
+          you'll find modern amenities, exceptional hospitality, and a welcoming
+          atmosphere that will make your stay truly memorable.
+        </p>
+      </div>
+
+      {/* Facilities Section */}
+      <div className="flex-grow max-w-6xl mx-auto py-12 px-6 lg:px-20">
+        <h2 className="text-3xl font-semibold text-center mb-8 text-gray-800">
+          Explore Our Facilities
+        </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-8">
           {facilities.map((facility) => (
             <div
               key={facility.id}
-              className="bg-white shadow-lg rounded-lg overflow-hidden"
+              className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300"
             >
               {/* Image */}
-              <img
-                src={facility.image}
-                alt={facility.title}
-                className="w-full h-48 object-cover"
-              />
+              <div className="relative">
+                <img
+                  src={facility.image}
+                  alt={facility.title}
+                  className="w-full h-48 object-cover"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-30 hover:bg-opacity-0 transition duration-300"></div>
+              </div>
 
               {/* Details */}
-              <div className="p-4">
-                <h2 className="text-xl font-bold text-gray-800">
+              <div className="p-6">
+                <h3 className="text-2xl font-semibold text-gray-800 mb-2">
                   {facility.title}
-                </h2>
-                <p className="text-gray-600 mt-2">{facility.description}</p>
-
-                {/* Button to navigate to the facility page */}
+                </h3>
+                <p className="text-gray-600 mb-4">{facility.description}</p>
                 <button
                   onClick={() => navigate(facility.link)} // Navigate to the respective facility page
-                  className="mt-4 w-full bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-600"
+                  className="w-full bg-indigo-500 text-white py-2 px-4 rounded-md font-medium hover:bg-indigo-600 transition-colors duration-200"
                 >
                   Learn More
                 </button>
