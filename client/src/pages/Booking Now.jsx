@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function BookingNow() {
   const location = useLocation();
@@ -20,6 +20,24 @@ export default function BookingNow() {
   // Calculate the regular price based on the number of rooms
   const totalPrice = numberOfRooms * room.price;
 
+  // Submit handler
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const bookingData = {
+      name: e.target.name.value,
+      contactNumber: e.target.contactNumber.value,
+      address: e.target.address.value,
+      parkingSpot: e.target["Parking spot"].checked,
+      furnished: e.target.Furnished.checked,
+      bedrooms: e.target.bedrooms.value,
+      numberOfRooms,
+      regularPrice: totalPrice,
+    };
+
+    navigate("/pay", { state: { bookingData, room } });
+  };
+
   return (
     <main className="p-3 flex justify-center">
       <div className="bg-white p-8 rounded-lg shadow-lg border border-gray-200 w-full max-w-lg">
@@ -36,31 +54,31 @@ export default function BookingNow() {
         </p>
 
         {/* Book Now Form */}
-        <form className="flex flex-col">
+        <form className="flex flex-col" onSubmit={handleSubmit}>
           <div className="flex flex-col gap-4">
             <input
               type="text"
+              name="name"
               placeholder="Name"
               className="border p-3 rounded-lg"
-              id="name"
               maxLength="62"
               minLength="10"
               required
             />
             <input
               type="tel"
+              name="contactNumber"
               placeholder="Contact Number"
               className="border p-3 rounded-lg"
-              id="contactNumber"
               pattern="[0-9]{10,15}"
               title="Contact number should only contain numbers and be 10-15 digits long."
               required
             />
             <input
               type="text"
+              name="address"
               placeholder="Address"
               className="border p-3 rounded-lg"
-              id="address"
               required
             />
             <div className="flex gap-6 flex-wrap">
@@ -77,24 +95,13 @@ export default function BookingNow() {
               <div className="flex items-center gap-2">
                 <input
                   type="number"
-                  id="bedrooms"
+                  name="bedrooms"
                   min="1"
                   max="10"
                   required
                   className="p-3 border border-gray-300 rounded-lg"
                 />
-                <p>Beds</p>
-              </div>
-              <div className="flex items-center gap-2">
-                <input
-                  type="number"
-                  id="bathrooms"
-                  min="1"
-                  max="10"
-                  required
-                  className="p-3 border border-gray-300 rounded-lg"
-                />
-                <p>Baths</p>
+                <p>Nights</p>
               </div>
               <div className="flex items-center gap-2">
                 <input

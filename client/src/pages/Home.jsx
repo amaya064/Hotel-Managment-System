@@ -44,18 +44,15 @@ export default function Home() {
     <div className="flex flex-col min-h-screen bg-gray-100">
       {/* Hero Section with Video */}
       <div className="relative h-screen bg-black">
-        <video
-          autoPlay
-          loop
-          muted
-          className="absolute top-0 left-0 w-full h-full object-cover"
-        >
-          <source
-            src="https://www.w3schools.com/html/mov_bbb.mp4" // Replace with your video URL
-            type="video/mp4"
-          />
-          Your browser does not support the video tag.
-        </video>
+      <video
+      className="absolute inset-0 w-full h-full object-cover brightness-75"
+      src="src/videos/Home.mp4"
+      autoPlay
+      muted
+      loop
+      playsInline
+      aria-label="Background Video"
+    ></video>
         <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
           <div className="text-center text-white">
             <h1 className="text-5xl font-extrabold mb-4">Welcome to Our Hotel</h1>
