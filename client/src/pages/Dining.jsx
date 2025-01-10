@@ -27,6 +27,15 @@ export default function Dining() {
       {/* Hero Section */}
       <section className="relative bg-[url('https://via.placeholder.com/1600x600?text=Dining+Experience')] bg-cover bg-center h-[400px] flex items-center justify-center">
         <div className="bg-black bg-opacity-50 p-6 rounded-lg text-center text-white">
+        <video
+      className="absolute inset-0 w-full h-full object-cover brightness-75"
+      src="src/videos/Dining.mp4"
+      autoPlay
+      muted
+      loop
+      playsInline
+      aria-label="Background Video"
+    ></video>
           <h1 className="text-4xl font-bold mb-4">Dining Experience</h1>
           <p className="text-lg">
             Enjoy world-class cuisine in an elegant and relaxing atmosphere.
