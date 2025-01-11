@@ -4,23 +4,21 @@ import { useLocation, useNavigate } from "react-router-dom";
 export default function BookingNow() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { room } = location.state || {}; // Retrieve the room details passed from Accommodation
-  const [numberOfRooms, setNumberOfRooms] = useState(1); // State for the number of rooms
+  const { room } = location.state || {};
+  const [numberOfRooms, setNumberOfRooms] = useState(1);
 
   if (!room) {
     return (
-      <div className="flex justify-center items-center min-h-screen">
-        <p className="text-xl font-semibold text-gray-600">
+      <div className="flex justify-center items-center min-h-screen bg-gray-100">
+        <p className="text-xl font-semibold text-gray-700">
           No room details available. Please go back and select a room.
         </p>
       </div>
     );
   }
 
-  // Calculate the regular price based on the number of rooms
   const totalPrice = numberOfRooms * room.price;
 
-  // Submit handler
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -28,8 +26,7 @@ export default function BookingNow() {
       name: e.target.name.value,
       contactNumber: e.target.contactNumber.value,
       address: e.target.address.value,
-      parkingSpot: e.target["Parking spot"].checked,
-      furnished: e.target.Furnished.checked,
+      amenities: e.target.amenities.value,
       bedrooms: e.target.bedrooms.value,
       numberOfRooms,
       regularPrice: totalPrice,
@@ -39,112 +36,119 @@ export default function BookingNow() {
   };
 
   return (
-    <main className="p-3 flex justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg border border-gray-200 w-full max-w-lg">
-        {/* Room Details */}
-        <h1 className="text-3xl font-semibold text-center mb-6">{room.name}</h1>
-        <img
-          src={room.image}
-          alt={room.name}
-          className="w-full h-56 object-cover rounded-lg mb-4"
-        />
-        <p className="text-gray-600 text-center mb-2">{room.description}</p>
-        <p className="text-lg font-semibold text-gray-800 text-center mb-6">
-          Price: ${room.price} / night
-        </p>
+    <main className="p-6 bg-gray-100 min-h-screen flex justify-center items-center">
+      <div className="bg-white shadow-2xl rounded-xl overflow-hidden w-full max-w-3xl">
+        <div className="relative">
+          <img
+            src={room.image}
+            alt={room.name}
+            className="w-full h-64 object-cover"
+          />
+          <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+            <h1 className="text-4xl font-bold text-white drop-shadow-lg">
+              {room.name}
+            </h1>
+          </div>
+        </div>
+        <div className="p-8">
+          <p className="text-gray-600 text-lg mb-4">{room.description}</p>
+          <p className="text-xl font-semibold text-gray-800 mb-6">
+            ${room.price} <span className="text-sm font-normal">/ night</span>
+          </p>
 
-        {/* Book Now Form */}
-        <form className="flex flex-col" onSubmit={handleSubmit}>
-          <div className="flex flex-col gap-4">
-            <input
-              type="text"
-              name="name"
-              placeholder="Name"
-              className="border p-3 rounded-lg"
-              maxLength="62"
-              minLength="10"
-              required
-            />
-            <input
-              type="tel"
-              name="contactNumber"
-              placeholder="Contact Number"
-              className="border p-3 rounded-lg"
-              pattern="[0-9]{10,15}"
-              title="Contact number should only contain numbers and be 10-15 digits long."
-              required
-            />
-            <input
-              type="text"
-              name="address"
-              placeholder="Address"
-              className="border p-3 rounded-lg"
-              required
-            />
-            <div className="flex gap-6 flex-wrap">
-              <div className="flex gap-2 items-center">
-                <input type="checkbox" id="Parking spot" className="w-5" />
-                <span>Parking spot</span>
-              </div>
-              <div className="flex gap-2 items-center">
-                <input type="checkbox" id="Furnished" className="w-5" />
-                <span>Furnished</span>
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <input
+                type="text"
+                name="name"
+                placeholder="Full Name"
+                className="border border-gray-300 p-4 rounded-lg focus:ring focus:ring-blue-200"
+                required
+              />
+              <input
+                type="tel"
+                name="contactNumber"
+                placeholder="Contact Number"
+                className="border border-gray-300 p-4 rounded-lg focus:ring focus:ring-blue-200"
+                pattern="[0-9]{10,15}"
+                required
+              />
+              <input
+                type="text"
+                name="address"
+                placeholder="Address"
+                className="border border-gray-300 p-4 rounded-lg focus:ring focus:ring-blue-200"
+                required
+              />
+              <div>
+                <label
+                  htmlFor="amenities"
+                  className="block text-gray-700 font-medium mb-2"
+                >
+                  Amenities
+                </label>
+                <select
+                  id="amenities"
+                  name="amenities"
+                  className="border border-gray-300 p-4 rounded-lg w-full focus:ring focus:ring-blue-200"
+                  required
+                >
+                  <option value="" disabled selected>
+                    Choose an amenity
+                  </option>
+                  <option value="Parking Spot">Parking Spot</option>
+                  <option value="Furnished">Furnished</option>
+                  <option value="Wi-Fi">Wi-Fi</option>
+                  <option value="Swimming Pool">Swimming Pool</option>
+                  <option value="Gym">Gym</option>
+                </select>
               </div>
             </div>
-            <div className="flex flex-wrap gap-6">
-              <div className="flex items-center gap-2">
-                <input
-                  type="number"
-                  name="bedrooms"
-                  min="1"
-                  max="10"
-                  required
-                  className="p-3 border border-gray-300 rounded-lg"
-                />
-                <p>Nights</p>
-              </div>
-              <div className="flex items-center gap-2">
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <input
+                type="number"
+                name="bedrooms"
+                min="1"
+                max="30"
+                placeholder="Number of Nights"
+                className="border border-gray-300 p-4 rounded-lg focus:ring focus:ring-blue-200"
+                required
+              />
+              <div>
+                <label
+                  htmlFor="numberOfRooms"
+                  className="block text-gray-700 font-medium mb-2"
+                >
+                  Number of Rooms
+                </label>
                 <input
                   type="number"
                   id="numberOfRooms"
-                  min="1"
-                  max="10"
                   value={numberOfRooms}
                   onChange={(e) => setNumberOfRooms(Number(e.target.value))}
+                  min="1"
+                  max="10"
+                  className="border border-gray-300 p-4 rounded-lg w-full focus:ring focus:ring-blue-200"
                   required
-                  className="p-3 border border-gray-300 rounded-lg"
                 />
-                <p>Rooms</p>
-              </div>
-              <div className="flex items-center gap-2">
-                <input
-                  type="number"
-                  id="RegularPrice"
-                  value={totalPrice}
-                  readOnly
-                  className="p-3 border border-gray-300 rounded-lg bg-gray-100"
-                />
-                <div className="flex flex-col items-center">
-                  <p>Regular Price</p>
-                  <span className="text-xs">($/ night for selected rooms)</span>
-                </div>
               </div>
             </div>
+
+            <div className="text-center">
+              <p className="text-lg font-bold text-gray-800">
+                Total Price: ${totalPrice}
+              </p>
+            </div>
+
             <button
               type="submit"
-              className="p-3 bg-slate-700 text-white rounded-lg hover:opacity-95 disabled:opacity-80"
+              className="w-full bg-blue-600 text-white font-medium p-4 rounded-lg hover:bg-blue-700 focus:ring focus:ring-blue-300 transition"
             >
-              Submit
+              Confirm Booking
             </button>
-            <button
-              type="button"
-              onClick={() => navigate(-1)} // Navigate back to the previous page
-              className="p-3 bg-red-500 text-white rounded-lg hover:opacity-95 mt-3"
-            >
-              Cancel Booking
-            </button>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </main>
   );

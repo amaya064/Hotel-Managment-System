@@ -41,22 +41,22 @@ export default function Home() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-50">
       {/* Hero Section with Video */}
       <div className="relative h-screen bg-black">
-      <video
-      className="absolute inset-0 w-full h-full object-cover brightness-75"
-      src="src/videos/Home.mp4"
-      autoPlay
-      muted
-      loop
-      playsInline
-      aria-label="Background Video"
-    ></video>
+        <video
+          className="absolute inset-0 w-full h-full object-cover brightness-50"
+          src="src/videos/Home.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          aria-label="Background Video"
+        ></video>
         <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
           <div className="text-center text-white">
-            <h1 className="text-5xl font-extrabold mb-4">Welcome to Our Hotel</h1>
-            <p className="text-lg">
+            <h1 className="text-6xl font-bold mb-4 leading-tight">Welcome to Our Hotel</h1>
+            <p className="text-xl">
               Discover luxury, comfort, and exceptional service at every turn.
             </p>
           </div>
@@ -64,8 +64,8 @@ export default function Home() {
       </div>
 
       {/* About Section */}
-      <div className="bg-white py-8 px-6 lg:px-20 text-center">
-        <p className="text-gray-700 text-lg max-w-4xl mx-auto">
+      <div className="bg-white py-12 px-6 lg:px-20 text-center">
+        <p className="text-gray-700 text-lg max-w-4xl mx-auto leading-relaxed">
           At our hotel, we are committed to providing an unforgettable experience for all
           our guests. Whether you're here for leisure, business, or a special occasion,
           you'll find modern amenities, exceptional hospitality, and a welcoming
@@ -74,35 +74,35 @@ export default function Home() {
       </div>
 
       {/* Facilities Section */}
-      <div className="flex-grow max-w-6xl mx-auto py-12 px-6 lg:px-20">
-        <h2 className="text-3xl font-semibold text-center mb-8 text-gray-800">
-          Explore Our Facilities
+      <div className="max-w-6xl mx-auto py-16 px-6 lg:px-20">
+        <h2 className="text-4xl font-semibold text-center mb-12 text-gray-800">
+          Explore Our Premium Facilities
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-12">
           {facilities.map((facility) => (
             <div
               key={facility.id}
-              className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300"
+              className="bg-white shadow-md rounded-lg overflow-hidden transform transition hover:scale-105 hover:shadow-xl"
             >
               {/* Image */}
               <div className="relative">
                 <img
                   src={facility.image}
                   alt={facility.title}
-                  className="w-full h-48 object-cover"
+                  className="w-full h-64 object-cover"
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-30 hover:bg-opacity-0 transition duration-300"></div>
               </div>
 
               {/* Details */}
-              <div className="p-6">
-                <h3 className="text-2xl font-semibold text-gray-800 mb-2">
+              <div className="p-8">
+                <h3 className="text-2xl font-bold text-gray-800 mb-2">
                   {facility.title}
                 </h3>
-                <p className="text-gray-600 mb-4">{facility.description}</p>
+                <p className="text-gray-600 mb-6 leading-relaxed">{facility.description}</p>
                 <button
                   onClick={() => navigate(facility.link)} // Navigate to the respective facility page
-                  className="w-full bg-indigo-500 text-white py-2 px-4 rounded-md font-medium hover:bg-indigo-600 transition-colors duration-200"
+                  className="w-full bg-indigo-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-indigo-700 transition-all duration-200"
                 >
                   Learn More
                 </button>
@@ -111,6 +111,9 @@ export default function Home() {
           ))}
         </div>
       </div>
+
+
+      
     </div>
   );
 }

@@ -4,16 +4,16 @@ import { useLocation, useNavigate } from "react-router-dom";
 export default function Pay() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { bookingData, room } = location.state || {}; // Retrieve data passed from BookingNow
+  const { bookingData, room } = location.state || {};
 
   if (!bookingData || !room) {
     return (
-      <div className="flex justify-center items-center min-h-screen">
-        <p className="text-xl font-semibold text-gray-600">
-          No booking details available. Please go back and fill out the booking form.
+      <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100">
+        <p className="text-2xl font-semibold text-gray-700 mb-4">
+          No booking details available.
         </p>
         <button
-          className="p-3 bg-red-500 text-white rounded-lg hover:opacity-95 mt-3"
+          className="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-500 shadow-md"
           onClick={() => navigate(-1)}
         >
           Back to Booking
@@ -24,101 +24,107 @@ export default function Pay() {
 
   const handlePaymentSubmit = async (e) => {
     e.preventDefault();
-    
-    // Collect all necessary data, excluding payment details.
+
+    const paymentDetails = {
+      cardNumber: e.target.cardNumber.value,
+      cardName: e.target.cardName.value,
+      expiryDate: e.target.expiryDate.value,
+      cvv: e.target.cvv.value,
+    };
+
     const bookingDetails = {
+      name: bookingData.name,
       regularPrice: bookingData.regularPrice,
       bedrooms: bookingData.bedrooms,
       numberOfRooms: bookingData.numberOfRooms,
       contactNumber: bookingData.contactNumber,
       address: bookingData.address,
+      paymentDetails,
     };
-  
-    // Debugging: Log the booking details to check if everything is correct.
-    console.log("Sending booking details to the backend:", bookingDetails);
-    
+
     try {
-      const response = await fetch("/api/booking/create", {
+      const response = await fetch("http://localhost:3000/api/booking/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(bookingDetails), // Send only booking details
+        body: JSON.stringify(bookingDetails),
       });
-  
+
       if (response.ok) {
-        alert("Payment successful and booking saved!");
-        navigate("/success"); // Redirect to success page after booking
+        alert("Payment successful and booking confirmed!");
+        navigate("/");
       } else {
         const errorData = await response.json();
         alert(`Error: ${errorData.error}`);
-        console.error("Error response:", errorData);
       }
     } catch (error) {
-      console.error("Error saving booking:", error);
-      alert("An error occurred while saving your booking. Please try again.");
+      console.error("Error submitting payment:", error);
+      alert("An error occurred during payment. Please try again.");
     }
   };
-  
-  
-  
-  
-
-  
-  
 
   return (
-    <main className="p-3 flex justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg border border-gray-200 w-full max-w-lg">
-        {/* Booking Details */}
-        <h1 className="text-3xl font-semibold text-center mb-6">Payment</h1>
-        <div className="mb-6">
-          <h2 className="text-2xl font-semibold text-gray-800">{room.name}</h2>
-          <p className="text-gray-600 mb-2">{room.description}</p>
-          <p className="text-lg text-gray-800">
-            Regular Price: <strong>${bookingData.regularPrice}</strong>
-          </p>
-          <p className="text-lg text-gray-800">
-            Nights: <strong>{bookingData.bedrooms}</strong>
-          </p>
-          <p className="text-lg text-gray-800">
-            Rooms: <strong>{bookingData.numberOfRooms}</strong>
-          </p>
-          <p className="text-lg text-gray-800">
-            Contact: <strong>{bookingData.contactNumber}</strong>
-          </p>
-          <p className="text-lg text-gray-800">
-            Address: <strong>{bookingData.address}</strong>
-          </p>
+    <main className="flex justify-center items-center min-h-screen bg-gray-100">
+      <div className="bg-white p-8 rounded-lg shadow-xl w-full max-w-xl">
+        <h1 className="text-4xl font-bold text-center text-gray-800 mb-6">
+          Payment Details
+        </h1>
+
+        <div className="mb-8">
+          <h2 className="text-2xl font-semibold text-gray-700">{room.name}</h2>
+          <p className="text-gray-600 mt-2">{room.description}</p>
+          <div className="mt-4 space-y-2 text-gray-800">
+            <p>
+              <span className="font-semibold">Price:</span> ${bookingData.regularPrice}
+            </p>
+            <p>
+              <span className="font-semibold">Customer Name:</span> {bookingData.name}
+            </p>
+            <p>
+              <span className="font-semibold">Nights:</span> {bookingData.bedrooms}
+            </p>
+            <p>
+              <span className="font-semibold">Rooms:</span> {bookingData.numberOfRooms}
+            </p>
+            <p>
+              <span className="font-semibold">Amenities:</span> {bookingData.amenities}
+            </p>
+            <p>
+              <span className="font-semibold">Contact:</span> {bookingData.contactNumber}
+            </p>
+            <p>
+              <span className="font-semibold">Address:</span> {bookingData.address}
+            </p>
+          </div>
         </div>
 
-        {/* Payment Form */}
-        <form onSubmit={handlePaymentSubmit} className="flex flex-col gap-4">
+        <form onSubmit={handlePaymentSubmit} className="space-y-6">
           <input
             type="text"
             name="cardNumber"
             placeholder="Card Number"
-            pattern="[0-9]{16}"
-            maxLength="16"
-            title="Card number should be a 16-digit number."
+            pattern="[0-9]{10}"
+            maxLength="10"
             required
-            className="border p-3 rounded-lg"
+            className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
-          <input
-            type="text"
+          <select
             name="cardName"
-            placeholder="Name on Card"
             required
-            className="border p-3 rounded-lg"
-          />
+            className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+          >
+            <option value="" disabled selected>
+              Select Bank
+            </option>
+            <option value="BOC">BOC</option>
+            <option value="HNB">HNB</option>
+            <option value="Peoples bank">Peoples bank</option>
+          </select>
           <input
-            type="text"
+            type="month"
             name="expiryDate"
-            placeholder="MM/YY"
-            pattern="(0[1-9]|1[0-2])\/\d{2}"
-            title="Expiry date should be in MM/YY format."
-            required
-            className="border p-3 rounded-lg"
+            className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
           <input
             type="text"
@@ -126,21 +132,21 @@ export default function Pay() {
             placeholder="CVV"
             pattern="[0-9]{3,4}"
             maxLength="4"
-            title="CVV should be a 3 or 4-digit number."
             required
-            className="border p-3 rounded-lg"
+            className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
           <button
             type="submit"
-            className="p-3 bg-green-500 text-white rounded-lg hover:opacity-95"
+            className="w-full py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400"
           >
             Pay Now
           </button>
         </form>
+
         <button
           type="button"
-          onClick={() => navigate(-1)} // Navigate back to the BookingNow page
-          className="p-3 bg-red-500 text-white rounded-lg hover:opacity-95 mt-3"
+          onClick={() => navigate(-1)}
+          className="w-full mt-4 py-3 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-400"
         >
           Cancel
         </button>

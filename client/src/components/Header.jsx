@@ -26,48 +26,41 @@ export default function Header() {
       <div className="max-w-7xl mx-auto p-6 flex justify-between items-center">
         {/* Logo Section */}
         <Link to="/" className="flex items-center space-x-2">
-          <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 tracking-tight">
-            <span className="text-indigo-600">Hotel</span>
-            <span className="text-gray-700">Management</span>
+          <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tight flex items-center space-x-3">
+            <span className="text-indigo-600 text-5xl">
+              <i className="fas fa-hotel"></i> {/* Hotel icon */}
+            </span>
+            <span className="text-indigo-700">INO</span>
+            <span className="text-gray-800">Holiday</span>
           </h1>
         </Link>
 
-        {/* Search Bar Section */}
-        <div className="relative flex items-center">
-          <input
-            type="text"
-            placeholder="Search..."
-            className="w-72 sm:w-96 p-3 pl-12 bg-white text-gray-800 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-          />
-          <button
-            type="submit"
-            className="absolute top-1/2 transform -translate-y-1/2 right-2 text-gray-600 hover:text-indigo-500 transition duration-300"
-          >
-            <span className="material-icons">search</span>
-          </button>
-        </div>
-
-        {/* Navigation Links */}
+        {/* Navigation Links with Icons */}
         <ul className="flex items-center space-x-8">
           <Link to="/">
-            <li className="text-gray-800 font-medium hover:text-indigo-500 transition duration-300">Home</li>
+            <li className="flex items-center text-gray-800 font-medium hover:text-indigo-500 transition duration-300">
+              <i className="fas fa-home mr-2"></i> Home
+            </li>
           </Link>
           <Link to="/about">
-            <li className="text-gray-800 font-medium hover:text-indigo-500 transition duration-300">About</li>
+            <li className="flex items-center text-gray-800 font-medium hover:text-indigo-500 transition duration-300">
+              <i className="fas fa-info-circle mr-2"></i> About
+            </li>
           </Link>
           {email ? (
             <>
               <li
-                className="text-gray-800 font-medium hover:text-indigo-500 transition duration-300 cursor-pointer"
+                className="flex items-center text-gray-800 font-medium hover:text-indigo-500 transition duration-300 cursor-pointer"
                 onClick={() => navigate('/profile')}
               >
-                {email}
+                <i className="fas fa-user mr-2"></i> {email}
               </li>
-              
             </>
           ) : (
             <Link to="/sign-in">
-              <li className="text-gray-800 font-medium hover:text-indigo-500 transition duration-300">Sign In</li>
+              <li className="flex items-center text-gray-800 font-medium hover:text-indigo-500 transition duration-300">
+                <i className="fas fa-sign-in-alt mr-2"></i> Sign In
+              </li>
             </Link>
           )}
         </ul>
