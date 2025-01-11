@@ -46,46 +46,45 @@ export default function Profile() {
   };
 
   return (
-    <div
-      className="min-h-screen flex flex-col"
-      style={{
-        backgroundImage: "url('src/images/photo3.png')", // Replace with the path to your background photo
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
-    >
-      <div className="bg-white shadow-xl rounded-lg max-w-lg w-full p-8 mx-auto mt-10">
+    <div className="min-h-screen flex justify-center items-center bg-gray-100">
+      <div className="bg-white shadow-2xl rounded-lg max-w-md w-full p-8">
+        <div className="flex justify-center mb-8">
+          <img
+            src="https://www.w3schools.com/w3images/avatar2.png" // Add a default avatar or dynamic user image
+            alt="User Avatar"
+            className="w-24 h-24 rounded-full border-4 border-indigo-600"
+          />
+        </div>
         <h1 className="text-3xl font-semibold text-center text-gray-800 mb-6">Profile Details</h1>
-        <div className="border-t-2 border-gray-300 pt-4">
-          <div className="mb-4">
+
+        <div className="space-y-6">
+          <div className="flex justify-between">
             <label className="text-lg font-medium text-gray-700">Username</label>
-            <p className="text-xl font-semibold text-gray-800 mt-2">
+            <p className="text-xl font-semibold text-gray-800">
               {user.username || "N/A"}
             </p>
           </div>
-          <div className="mb-6">
+          <div className="flex justify-between">
             <label className="text-lg font-medium text-gray-700">Email</label>
-            <p className="text-xl font-semibold text-gray-800 mt-2">
+            <p className="text-xl font-semibold text-gray-800">
               {user.email || "N/A"}
             </p>
           </div>
-          <div className="text-center">
-            <button
-              className="bg-indigo-600 text-white py-2 px-6 rounded-full hover:bg-indigo-700 transition duration-300"
-              onClick={() => navigate("/sign-in")}
-            >
-              Update
-            </button>
-          </div>
-          <div className="text-center mt-4">
-            <button
-              className="bg-red-600 text-white py-2 px-6 rounded-full hover:bg-red-700 transition duration-300"
-              onClick={handleLogout}
-            >
-              LOGOUT
-            </button>
-          </div>
+        </div>
+
+        <div className="mt-8 flex justify-between items-center">
+          <button
+            className="bg-indigo-600 text-white py-2 px-6 rounded-lg hover:bg-indigo-700 transition duration-300 w-full mr-2"
+            onClick={() => navigate("/sign-in")}
+          >
+            Update
+          </button>
+          <button
+            className="bg-red-600 text-white py-2 px-6 rounded-lg hover:bg-red-700 transition duration-300 w-full ml-2"
+            onClick={handleLogout}
+          >
+            LOGOUT
+          </button>
         </div>
       </div>
     </div>
