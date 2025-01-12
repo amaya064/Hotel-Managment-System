@@ -80,6 +80,12 @@ export default function Profile() {
             Update
           </button>
           <button
+            className="bg-indigo-600 text-white py-2 px-6 rounded-lg hover:bg-indigo-700 transition duration-300 w-full mr-2"
+            onClick={() => navigate("/order")}
+          >
+            Order
+          </button>
+          <button
             className="bg-red-600 text-white py-2 px-6 rounded-lg hover:bg-red-700 transition duration-300 w-full ml-2"
             onClick={handleLogout}
           >

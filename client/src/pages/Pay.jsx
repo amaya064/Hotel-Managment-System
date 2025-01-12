@@ -34,6 +34,7 @@ export default function Pay() {
 
     const bookingDetails = {
       name: bookingData.name,
+      email: bookingData.email,
       regularPrice: bookingData.regularPrice,
       bedrooms: bookingData.bedrooms,
       numberOfRooms: bookingData.numberOfRooms,
@@ -80,6 +81,9 @@ export default function Pay() {
             </p>
             <p>
               <span className="font-semibold">Customer Name:</span> {bookingData.name}
+            </p>
+            <p>
+              <span className="font-semibold">Email:</span> {bookingData.email}
             </p>
             <p>
               <span className="font-semibold">Nights:</span> {bookingData.bedrooms}

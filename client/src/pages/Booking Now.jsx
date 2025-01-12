@@ -7,6 +7,9 @@ export default function BookingNow() {
   const { room } = location.state || {};
   const [numberOfRooms, setNumberOfRooms] = useState(1);
 
+  // Retrieve the email from localStorage
+  const userEmail = localStorage.getItem("userEmail");
+
   if (!room) {
     return (
       <div className="flex justify-center items-center min-h-screen bg-gray-100">
@@ -24,6 +27,7 @@ export default function BookingNow() {
 
     const bookingData = {
       name: e.target.name.value,
+      email: userEmail, // Include the user's email in the booking data
       contactNumber: e.target.contactNumber.value,
       address: e.target.address.value,
       amenities: e.target.amenities.value,
@@ -65,6 +69,19 @@ export default function BookingNow() {
                 className="border border-gray-300 p-4 rounded-lg focus:ring focus:ring-blue-200"
                 required
               />
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block text-gray-700 font-medium mb-2"
+                >
+                  Email
+                </label>
+                <p
+                  className="p-4 border border-gray-300 rounded-lg bg-gray-100 text-gray-800"
+                >
+                  {userEmail}
+                </p>
+              </div>
               <input
                 type="tel"
                 name="contactNumber"
