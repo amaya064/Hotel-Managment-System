@@ -54,7 +54,7 @@ export default function Pay() {
 
       if (response.ok) {
         alert("Payment successful and booking confirmed!");
-        navigate("/");
+        navigate("/order");
       } else {
         const errorData = await response.json();
         alert(`Error: ${errorData.error}`);
