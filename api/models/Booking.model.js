@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 const BookingSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
+    email: { type: String, required: true },
     regularPrice: { type: Number, required: true },
     bedrooms: { type: Number, required: true },
     numberOfRooms: { type: Number, required: true },

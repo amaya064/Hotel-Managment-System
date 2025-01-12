@@ -13,6 +13,7 @@ import Relaxing from './pages/Relaxing';
 import Footer from './components/footer';
 
 import Pay from './pages/Pay';
+import Order from './pages/Order';
 
 
 
@@ -34,6 +35,7 @@ export default function App() {
       <Route path="/relaxing" element={<Relaxing />} />
       
       <Route path="/pay" element={< Pay />} />
+      <Route path="/order" element={< Order />} />
     
       
 

@@ -1,8 +1,9 @@
 import express from 'express';
-import { createBooking } from '../controllers/Booking.controller.js';
+import { createBooking, getBookingsByEmail } from '../controllers/Booking.controller.js';
 
 const router = express.Router();
 
-router.post('/create', createBooking);  
+router.post('/create', createBooking); 
+router.get('/:email', getBookingsByEmail); 
 
 export default router;
