@@ -75,7 +75,7 @@ export default function Profile() {
         <div className="mt-8 flex justify-between items-center">
           <button
             className="bg-indigo-600 text-white py-2 px-6 rounded-lg hover:bg-indigo-700 transition duration-300 w-full mr-2"
-            onClick={() => navigate("/sign-in")}
+            onClick={() => navigate("/sign-up")}
           >
             Update
           </button>

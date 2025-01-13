@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { FaHome, FaBed, FaPhone, FaMapMarkerAlt, FaCalendarAlt, FaDollarSign } from 'react-icons/fa';
+import React, { useEffect, useState } from "react";
+import { FaHome, FaBed, FaPhone, FaMapMarkerAlt, FaCalendarAlt, FaDollarSign, FaTrash } from "react-icons/fa";
 
 export default function Order() {
   const [bookings, setBookings] = useState([]);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const fetchBookings = async () => {
-      const email = localStorage.getItem('userEmail'); // Retrieve the email of the signed-in user
+      const email = localStorage.getItem("userEmail"); // Retrieve the email of the signed-in user
       try {
         const response = await fetch(`http://localhost:3000/api/booking/${email}`);
         const data = await response.json();
@@ -15,16 +15,37 @@ export default function Order() {
         if (response.ok) {
           setBookings(data); // Set bookings if fetch is successful
         } else {
-          setError(data.message || 'Failed to fetch bookings.');
+          setError(data.message || "Failed to fetch bookings.");
         }
       } catch (err) {
-        setError('An error occurred while fetching bookings.');
-        console.error('Error:', err);
+        setError("An error occurred while fetching bookings.");
+        console.error("Error:", err);
       }
     };
 
     fetchBookings();
   }, []);
+
+  const handleDelete = async (bookingId) => {
+    try {
+      const response = await fetch(`http://localhost:3000/api/booking/${bookingId}`, {
+        method: "DELETE",
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Filter out the deleted booking from the state
+        setBookings((prevBookings) => prevBookings.filter((booking) => booking._id !== bookingId));
+        setError(""); // Clear any previous error
+      } else {
+        setError(data.message || "Failed to delete booking.");
+      }
+    } catch (err) {
+      setError("An error occurred while deleting the booking.");
+      console.error("Error:", err);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-100 text-gray-800">
@@ -39,9 +60,7 @@ export default function Order() {
       {/* Booking List Section */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          {error && (
-            <p className="text-red-500 text-center mb-4">{error}</p>
-          )}
+          {error && <p className="text-red-500 text-center mb-4">{error}</p>}
 
           {bookings.length === 0 && !error ? (
             <p className="text-gray-500 text-center">No bookings found.</p>
@@ -49,39 +68,42 @@ export default function Order() {
             <ul className="space-y-6">
               {bookings.map((booking) => (
                 <li key={booking._id} className="p-6 bg-white shadow-lg rounded-lg hover:shadow-xl transition duration-300">
-                  <h3 className="text-xl font-semibold text-indigo-700 mb-2">{booking.name}</h3>
+                  <div className="flex justify-between items-center">
+                    <h3 className="text-xl font-semibold text-indigo-700 mb-2">{booking.name}</h3>
+                    <button
+                      className="bg-red-500 text-white px-4 py-2 rounded-lg flex items-center hover:bg-red-600 transition duration-300"
+                      onClick={() => handleDelete(booking._id)}
+                    >
+                      <FaTrash className="mr-2" />
+                      Delete
+                    </button>
+                  </div>
 
-                  {/* Price */}
                   <div className="flex items-center text-gray-600 mb-2">
                     <FaDollarSign className="mr-2" />
                     <span>Price: ${booking.regularPrice}</span>
                   </div>
 
-                  {/* Bedrooms */}
                   <div className="flex items-center text-gray-600 mb-2">
                     <FaBed className="mr-2" />
                     <span>Bedrooms: {booking.bedrooms}</span>
                   </div>
 
-                  {/* Rooms */}
                   <div className="flex items-center text-gray-600 mb-2">
                     <FaHome className="mr-2" />
                     <span>Rooms: {booking.numberOfRooms}</span>
                   </div>
 
-                  {/* Contact Number */}
                   <div className="flex items-center text-gray-600 mb-2">
                     <FaPhone className="mr-2" />
                     <span>Contact: {booking.contactNumber}</span>
                   </div>
 
-                  {/* Address */}
                   <div className="flex items-center text-gray-600 mb-4">
                     <FaMapMarkerAlt className="mr-2" />
                     <span>Address: {booking.address}</span>
                   </div>
 
-                  {/* Booked Date */}
                   <p className="text-gray-500 text-sm">
                     <FaCalendarAlt className="mr-2" />
                     Booked on: {new Date(booking.createdAt).toLocaleDateString()}
@@ -93,7 +115,6 @@ export default function Order() {
         </div>
       </section>
 
-      {/* Decorative Section */}
       <section className="py-16 bg-teal-50">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-2xl font-semibold text-teal-600 mb-4">

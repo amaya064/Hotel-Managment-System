@@ -73,3 +73,22 @@ export const getBookingsByEmail = async (req, res) => {
     res.status(500).json({ error: `Internal server error: ${error.message}` });
   }
 };
+
+// Delete a booking
+export const deleteBooking = async (req, res) => {
+  try {
+    const { bookingId } = req.params;
+
+    // Find and delete the booking by ID
+    const deletedBooking = await Booking.findByIdAndDelete(bookingId);
+
+    if (!deletedBooking) {
+      return res.status(404).json({ message: "Booking not found." });
+    }
+
+    res.status(200).json({ message: "Booking deleted successfully!" });
+  } catch (error) {
+    console.error("Error deleting booking:", error);
+    res.status(500).json({ error: `Internal server error: ${error.message}` });
+  }
+};
